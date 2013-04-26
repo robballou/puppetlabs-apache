@@ -16,7 +16,7 @@ class apache::mod::ssl {
   }
 
   # create the ssl_cert_destdir directory
-  file { "${apache::params::ssl_cert_destdir}",
+  file { "${apache::params::ssl_cert_destdir}":
     ensure => directory,
     owner => root,
     group => root,
