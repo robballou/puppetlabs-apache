@@ -74,10 +74,16 @@ define apache::vhost(
   }
 
   if $ssl_cert_name == '' {
-    $ssl_cert_name = "$srvname.crt"
+    $ssl_cert_filename = "$srvname.crt"
+  }
+  else {
+    $ssl_cert_filename = $ssl_cert_name
   }
   if $ssl_key_name == '' {
-    $ssl_key_name = "$srvname.key"
+    $ssl_key_filename = "$srvname.key"
+  }
+  else {
+    $ssl_key_filename = $ssl_key_name
   }
 
   if $ssl == true {

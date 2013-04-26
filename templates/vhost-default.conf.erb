@@ -58,7 +58,7 @@ NameVirtualHost <%= vhost_name %>:443
   # ssl configuration
   SSLEngine On
   SSLCipherSuite ALL:!ADH:!NULL:!EXP:!SSLv2:!LOW:!MEDIUM:RC4+RSA:+HIGH
-  SSLCertificateFile     <%= ssl_cert_destdir %>/<%= ssl_cert_name %>
-  SSLCertificateKeyFile  <%= ssl_cert_destdir %>/<%= ssl_key_name %>
+  SSLCertificateFile     <%= ssl_cert_destdir %>/<%= ssl_cert_filename %>
+  SSLCertificateKeyFile  <%= ssl_cert_destdir %>/<%= ssl_key_filename %>
 </VirtualHost>
 <% end %>
