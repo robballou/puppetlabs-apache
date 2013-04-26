@@ -48,7 +48,7 @@ class apache::params {
     $conf_dir              = "${httpd_dir}/conf"
     $mod_dir               = "${httpd_dir}/mod.d"
     $vdir                  = "${httpd_dir}/conf.d"
-    $ssl_cert_dir          = "${httpd_dir}/ssl"
+    $ssl_cert_destdir      = "${httpd_dir}/ssl"
     $conf_file             = 'httpd.conf'
     $mod_packages          = {
       'dev'        => 'httpd-devel',
