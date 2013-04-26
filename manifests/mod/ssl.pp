@@ -10,8 +10,6 @@ class apache::mod::ssl {
     mode => 0644,
     require => [
       Package['httpd'],
-      File[$docroot],
-      File[$logroot],
     ],
     notify  => Service['httpd'],
   }
