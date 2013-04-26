@@ -4,6 +4,9 @@ Puppetlabs module for Apache
 Apache is widely-used web server and this module will allow to configure
 various modules and setup virtual hosts with minimal effort.
 
+This version is forked off of the puppetlabs version with the intention to
+add basic support for SSL vhosts.
+
 Basic usage
 -----------
 
@@ -40,6 +43,10 @@ logfile to an alternate location, might be:
         serveraliases   => ['example.com',],
     }
 
+If you include `ssl => true`, a vhost entry will be created for
+SSL automatically. Also a configuration file will be added that
+tells Apache to listen on 443.
+
 Dependencies
 ------------
 
@@ -52,7 +59,7 @@ Notes
 -----
 
 Since Puppet cannot ensure that all parent directories exist you need to
-manage these yourself. In the more advanced example above, you need to ensure 
+manage these yourself. In the more advanced example above, you need to ensure
 that `/home/www.example.com` and `/srv/www.example.com` directories exist.
 
 Contributors
