@@ -56,7 +56,9 @@ define apache::vhost(
     $vhost_name         = $apache::params::vhost_name,
     $logroot            = "/var/log/$apache::params::apache_name",
     $access_log         = true,
-    $ensure             = 'present'
+    $ensure             = 'present',
+    $ssl_cert_name      = $apache::params::ssl_cert_name,
+    $ssl_key_name       = $apache::params::ssl_key_name
   ) {
 
   validate_re($ensure, '^(present|absent)$',
@@ -69,6 +71,13 @@ define apache::vhost(
     $srvname = $name
   } else {
     $srvname = $servername
+  }
+
+  if $ssl_cert_name == '' {
+    $ssl_cert_name = "$srvname.crt"
+  }
+  if $ssl_key_name == '' {
+    $ssl_key_name = "$srvname.key"
   }
 
   if $ssl == true {

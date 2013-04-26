@@ -29,3 +29,36 @@ NameVirtualHost <%= vhost_name %>:<%= port %>
   ServerSignature Off
 </VirtualHost>
 
+<% if ssl %>
+NameVirtualHost <%= vhost_name %>:443
+<VirtualHost <%= vhost_name %>:443>
+  ServerName <%= srvname %>
+<% if serveradmin %>
+  ServerAdmin <%= serveradmin %>
+<% end %>
+<% if serveraliases.is_a? Array -%>
+<% serveraliases.each do |name| -%><%= "  ServerAlias #{name}\n" %><% end -%>
+<% elsif serveraliases != '' -%>
+<%= "  ServerAlias #{serveraliases}" %>
+<% end -%>
+  DocumentRoot <%= docroot %>
+  <Directory <%= docroot %>>
+    Options <%= options %>
+    AllowOverride <%= Array(override).join(' ') %>
+    Order allow,deny
+    allow from all
+  </Directory>
+  ErrorLog <%= logroot %>/<%= name %>_error.log
+  LogLevel warn
+<% if access_log -%>
+  CustomLog <%= logroot %>/<%= name %>_access.log combined
+<% end -%>
+  ServerSignature Off
+
+  # ssl configuration
+  SSLEngine On
+  SSLCipherSuite ALL:!ADH:!NULL:!EXP:!SSLv2:!LOW:!MEDIUM:RC4+RSA:+HIGH
+  SSLCertificateFile     <%= ssl_cert_destdir %>/<%= ssl_cert_name %>
+  SSLCertificateKeyFile  <%= ssl_cert_destdir %>/<%= ssl_key_name %>
+</VirtualHost>
+<% end %>

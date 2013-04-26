@@ -30,7 +30,9 @@ class apache::params {
   $options       = 'Indexes FollowSymLinks MultiViews'
   $override      = 'None'
   $vhost_name    = '*'
-  
+  $ssl_cert_name = ''
+  $ssl_key_name  = ''
+
   if $::osfamily == 'redhat' or $::operatingsystem == 'amazon' {
     $user                  = 'apache'
     $group                 = 'apache'
@@ -46,6 +48,7 @@ class apache::params {
     $conf_dir              = "${httpd_dir}/conf"
     $mod_dir               = "${httpd_dir}/mod.d"
     $vdir                  = "${httpd_dir}/conf.d"
+    $ssl_cert_dir          = "${httpd_dir}/ssl"
     $conf_file             = 'httpd.conf'
     $mod_packages          = {
       'dev'        => 'httpd-devel',
@@ -76,6 +79,7 @@ class apache::params {
     $mod_auth_kerb_package = 'libapache2-mod-auth-kerb'
     $apache_dev            = ['libaprutil1-dev', 'libapr1-dev', 'apache2-prefork-dev']
     $vdir                  = '/etc/apache2/sites-enabled/'
+    $ssl_cert_dir          = '/etc/apache2/ssl'
     $proxy_modules         = ['proxy', 'proxy_http']
     $mod_packages          = {
       'dev'        => ['libaprutil1-dev', 'libapr1-dev', 'apache2-prefork-dev'],
