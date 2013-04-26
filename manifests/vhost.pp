@@ -57,6 +57,7 @@ define apache::vhost(
     $logroot            = "/var/log/$apache::params::apache_name",
     $access_log         = true,
     $ensure             = 'present',
+    $ssl_cert_destdir   = $apache::params::ssl_cert_destdir,
     $ssl_cert_name      = $apache::params::ssl_cert_name,
     $ssl_key_name       = $apache::params::ssl_key_name
   ) {
