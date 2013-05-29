@@ -27,6 +27,15 @@ NameVirtualHost <%= vhost_name %>:<%= port %>
   CustomLog <%= logroot %>/<%= name %>_access.log combined
 <% end -%>
   ServerSignature Off
+<% if serverstatus %>
+  # Allow access to server-status
+  <Location /server-status>
+    SetHandler server-status
+    Order Deny,Allow
+    Deny from all
+    Allow from <%= serverstatus %>
+  </Location>
+<% end -%>
 </VirtualHost>
 
 <% if ssl %>
@@ -54,6 +63,16 @@ NameVirtualHost <%= vhost_name %>:443
   CustomLog <%= logroot %>/<%= name %>_access.log combined
 <% end -%>
   ServerSignature Off
+
+  <% if serverstatus %>
+  # Allow access to server-status
+  <Location /server-status>
+    SetHandler server-status
+    Order Deny,Allow
+    Deny from all
+    Allow from <%= serverstatus %>
+  </Location>
+  <% end -%>
 
   # ssl configuration
   SSLEngine On

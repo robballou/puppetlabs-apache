@@ -32,6 +32,7 @@ class apache::params {
   $vhost_name    = '*'
   $ssl_cert_name = ''
   $ssl_key_name  = ''
+  $serverstatus  = false
 
   if $::osfamily == 'redhat' or $::operatingsystem == 'amazon' {
     $user                  = 'apache'
