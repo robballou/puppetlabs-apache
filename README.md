@@ -47,6 +47,34 @@ If you include `ssl => true`, a vhost entry will be created for
 SSL automatically. Also a configuration file will be added that
 tells Apache to listen on 443.
 
+Virtual host parameters
+-----------------------
+
+* access_log
+* apache_name
+* auth
+* configure_firewall
+* docroot
+* docroot_group
+* docroot_owner
+* ensure
+* logroot
+* options
+* override
+* port
+* priority
+* redirect_ssl
+* serveradmin
+* serveraliases
+* servername
+* serverstatus
+* ssl
+* ssl_cert_destdir
+* ssl_cert_name
+* ssl_key_name
+* template
+* vhost_name
+
 Dependencies
 ------------
 
